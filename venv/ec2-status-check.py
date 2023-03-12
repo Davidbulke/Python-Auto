@@ -17,7 +17,7 @@ def check_instance_status():
 
 
 
-schedule.every(10).minutes.do(check_instance_status)
+schedule.every().day.at("6:00")
 
 while True:
     schedule.run_pending()
