@@ -1,8 +1,8 @@
 import boto3
 import schedule
 
-ec2_client = boto3.client('ec2', region_name="eu-central-1")
-ec2_resource = boto3.resource('ec2', region_name="eu-central-1")
+ec2_client = boto3.client('ec2', region_name="us-east-1")
+ec2_resource = boto3.resource('ec2', region_name="us-east-1")
 
 
 def check_instance_status():
@@ -14,10 +14,10 @@ def check_instance_status():
         sys_status = status['SystemStatus']['Status']
         state = status['InstanceState']['Name']
         print(f"Instance {status['InstanceId']} is {state} with instance status {ins_status} and system status {sys_status}")
-    print("#############################\n")
 
 
-schedule.every(5).seconds.do(check_instance_status)
+
+schedule.every(10).minutes.do(check_instance_status)
 
 while True:
     schedule.run_pending()
